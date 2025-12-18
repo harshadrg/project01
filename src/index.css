@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@theme {
+  /* --- Typography Standard --- */
+  --font-sans: "Inter", "system-ui", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* --- Design Tokens --- */
+  --radius-panel: 12px;
+  --radius-control: 6px;
+  
+  /* --- Light Theme (Default) --- */
+  /* Professional Blue Palette */
+  --color-primary: oklch(60% 0.18 250);
+  --color-primary-hover: oklch(50% 0.18 250);
+  
+  /* Surface Colors */
+  --color-surface-page: oklch(98% 0.01 250);   /* Near-white blue-tint */
+  --color-surface-card: oklch(100% 0 0);       /* Pure white */
+  --color-surface-border: oklch(90% 0.02 250); /* Soft divider */
+  
+  /* Text Colors */
+  --color-text-main: oklch(25% 0.02 250);      /* Deep charcoal */
+  --color-text-muted: oklch(55% 0.02 250);     /* Accessible grey */
+
+  /* Semantic Status */
+  --color-success: oklch(65% 0.17 145);
+  --color-warning: oklch(75% 0.15 75);
+  --color-danger: oklch(60% 0.2 25);
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  /* --- Automatic Dark Mode Swap --- */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-primary: oklch(70% 0.15 250);
+      --color-primary-hover: oklch(80% 0.12 250);
+      
+      --color-surface-page: oklch(15% 0.02 250); /* Deep midnight */
+      --color-surface-card: oklch(20% 0.02 250); /* Slate card */
+      --color-surface-border: oklch(30% 0.03 250);
+      
+      --color-text-main: oklch(95% 0.01 250);    /* Soft white */
+      --color-text-muted: oklch(75% 0.02 250);   /* Readable grey */
+    }
+  }
+
+  /* Global smooth transition for theme switching */
+  * {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+}
