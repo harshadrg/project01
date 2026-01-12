@@ -1,8 +1,8 @@
-const Icon = ({ children, className = "", ...props }) => (
+export const StaticIcon = ({ children, className = "", ...props }) => (
   <svg 
     viewBox="0 0 24 24" 
-    fill="currentColor" 
-    stroke="none" 
+    fill="none" 
+    stroke="currentColor" 
     strokeWidth="2" 
     strokeLinecap="round" 
     strokeLinejoin="round"
@@ -13,4 +13,17 @@ const Icon = ({ children, className = "", ...props }) => (
   </svg>
 );
 
-export default Icon;
+export const AnimatedIcon = ({ children, className = "", ...props }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className={`${className}`}
+    {...props}
+  >
+    {children}
+  </svg>
+);
