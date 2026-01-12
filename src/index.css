@@ -1,32 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  /* --- Typography Standard --- */
+  /* --- Typography --- */
   --font-sans: "Inter", "system-ui", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
   /* --- Design Tokens --- */
   --radius-panel: 12px;
   --radius-control: 6px;
-  
-  /* --- Light Theme (Default) --- */
-  /* Professional Blue Palette */
-  --color-primary: oklch(60% 0.18 250);
-  --color-primary-hover: oklch(50% 0.18 250);
-  
-  /* Surface Colors */
-  --color-surface-page: oklch(98% 0.01 250);   /* Near-white blue-tint */
-  --color-surface-card: oklch(100% 0 0);       /* Pure white */
-  --color-surface-border: oklch(90% 0.02 250); /* Soft divider */
-  
-  /* Text Colors */
-  --color-text-main: oklch(25% 0.02 250);      /* Deep charcoal */
-  --color-text-muted: oklch(55% 0.02 250);     /* Accessible grey */
 
-  /* Semantic Status */
+  /* --- Custom v4 Spacing Scale --- */
+  --spacing-125: 31.25rem; /* 500px */
+  --spacing-150: 37.5rem;  /* 600px */
+
+  /* --- Neutral Scale (Cool Blue-Grays) --- */
+  --color-neutral-50: oklch(98% 0.01 255);
+  --color-neutral-100: oklch(95% 0.02 255);
+  --color-neutral-200: oklch(90% 0.02 255);
+  --color-neutral-300: oklch(82% 0.02 255);
+  --color-neutral-400: oklch(70% 0.05 255);
+  --color-neutral-500: oklch(55% 0.05 255);
+  --color-neutral-600: oklch(42% 0.04 255);
+  --color-neutral-700: oklch(32% 0.03 255);
+  --color-neutral-800: oklch(26% 0.04 255);
+  --color-neutral-900: oklch(18% 0.04 255);
+  --color-neutral-950: oklch(12% 0.03 255);
+
+  /* --- Brand Colors (Light) --- */
+  --color-primary: oklch(60% 0.2 255);
+  --color-primary-hover: oklch(52% 0.2 255);
+  --color-accent: oklch(0.627 0.265 303.9);
+  --color-secondary: oklch(70% 0.05 255);
+  --color-secondary-hover: oklch(60% 0.05 255);
+
+  /* --- Surface & Text (Light Mode) --- */
+  --color-surface-page: var(--color-neutral-50);
+  --color-surface-card: #ffffff;
+  --color-surface-border: var(--color-neutral-200);
+  --color-text-main: var(--color-neutral-950);
+  --color-text-muted: var(--color-neutral-500);
+
+  /* --- Semantic Status --- */
   --color-success: oklch(65% 0.17 145);
   --color-warning: oklch(75% 0.15 75);
   --color-danger: oklch(60% 0.2 25);
+
+  --animate-scan: scan 8s linear infinite;
+  --animate-bounce-slow: bounce 3s linear infinite;
+  
+  /* Keyframes */
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
 }
 
 @layer base {
@@ -34,23 +60,39 @@
     color-scheme: light dark;
   }
 
-  /* --- Automatic Dark Mode Swap --- */
+  /* --- Dark Mode Overrides --- */
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-primary: oklch(70% 0.15 250);
-      --color-primary-hover: oklch(80% 0.12 250);
-      
-      --color-surface-page: oklch(15% 0.02 250); /* Deep midnight */
-      --color-surface-card: oklch(20% 0.02 250); /* Slate card */
-      --color-surface-border: oklch(30% 0.03 250);
-      
-      --color-text-main: oklch(95% 0.01 250);    /* Soft white */
-      --color-text-muted: oklch(75% 0.02 250);   /* Readable grey */
+      /* Brand */
+      --color-primary: oklch(65% 0.2 255);
+      --color-primary-hover: oklch(75% 0.15 255);
+      --color-accent: oklab(62.17% 0.14967 -0.21135);
+      --color-secondary: var(--color-neutral-800);
+
+      /* Surface */
+      --color-surface-page: var(--color-neutral-950);
+      --color-surface-card: var(--color-neutral-900);
+      --color-surface-border: var(--color-neutral-800);
+
+      /* Text */
+      --color-text-main: var(--color-neutral-50);
+      --color-text-muted: var(--color-neutral-400);
+
+      /* Effects */
+      --color-glow: oklch(60% 0.2 255 / 20%);
     }
+    
   }
 
-  /* Global smooth transition for theme switching */
-  * {
-    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  /* --- Global Resets & Performance Transitions --- */
+  body {
+    @apply bg-surface-page text-text-main antialiased;
+    /* Transition only specific properties on the body to avoid layout thrashing */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Apply transition to common interactive elements instead of '*' */
+  a, button, input, .card {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   }
 }
