@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Icon from "../common/Icon";
+import { StaticIcon } from "../common/Icon.jsx";
 
 function Navbar() {
     const [open, setOpen] = useState(false);
@@ -18,13 +18,13 @@ function Navbar() {
                     aria-label="Toggle menu"
                     aria-expanded={open}
                 >
-                    <Icon>
+                    <StaticIcon>
                         {open ? (
                             <path d="M6 18L18 6M6 6l12 12" />
                         ) : (
                             <path d="M4 6h16M4 12h16M4 18h16" />
                         )}
-                    </Icon>
+                    </StaticIcon>
                 </button>
                 <div
                     className={`
