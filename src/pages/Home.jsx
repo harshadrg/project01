@@ -8,7 +8,7 @@ import { AnimateOnScroll } from "../components/common/AnimateOnScroll.jsx";
 function Home() {
     return (
         <div className="min-h-screen w-full bg-surface-page overflow-hidden">
-            <div className="absolute inset-0 z-0 opacity-50">
+            <div className="absolute inset-0 z-0 opacity-50 overflow-hidden">
                 <div className="absolute inset-0 z-0 opacity-[0.15] 
                 bg-[linear-gradient(to_right,#10b981_1px,transparent_1px),linear-gradient(to_bottom,#10b981_1px,transparent_1px)] 
                 bg-size-[40px_40px] mask-[linear-gradient(to_bottom,black_90%,transparent_100%)]"/>
