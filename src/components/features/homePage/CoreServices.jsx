@@ -1,6 +1,32 @@
+import { NavLink } from "react-router-dom";
 import { StaticIcon } from "../../common/Icon";
 
 export default function CoreServices() {
+  const viewSpecsBtnBtn = (
+    <div className="flex items-center justify-between group">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted group-hover:text-primary group-hover:scale-110 origin-left transition-all duration-300">
+        View Specifications
+      </span>
+      <StaticIcon className="w-3 h-3 text-text-muted group-hover:text-primary transition-transform group-hover:translate-x-1">
+        <polyline points="9 18 15 12 9 6" />
+      </StaticIcon>
+    </div>
+  )
+  const exploreAllServicesBtn = (
+    <button className="group mt-3 flex items-center gap-3 px-6 py-3 rounded-full border border-surface-border bg-surface-card hover:bg-primary hover:border-primary hover:-translate-y-0.5 transition-all duration-300 shadow-sm active:scale-95">
+      <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-text-main group-hover:text-white transition-colors">
+        Explore All Services
+      </span>
+
+      <div className="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
+        <StaticIcon className="w-3.5 h-3.5 text-primary group-hover:text-white transition-colors">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </StaticIcon>
+      </div>
+    </button>
+  )
+
   return (
     <section className="py-10 relative">
       <div className="container mx-auto px-6 max-w-6xl">
@@ -29,7 +55,7 @@ export default function CoreServices() {
         </div>
 
         {/* --- Service Grid (Manual Cards) --- */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid items-center md:grid-cols-3 gap-6">
 
           {/* Card 1: Development */}
           <div className="bg-surface-card border border-surface-border rounded-(--radius-panel) p-8 hover:border-primary/40 transition-colors flex flex-col h-full">
@@ -58,14 +84,9 @@ export default function CoreServices() {
 
             {/* Footer */}
             <div className="pt-6 border-t border-surface-border">
-              <a href="/services/web-dev" className="flex items-center justify-between group">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted group-hover:text-primary group-hover:scale-110 origin-left transition-all duration-300">
-                  View Specifications
-                </span>
-                <StaticIcon className="w-3 h-3 text-text-muted group-hover:text-primary transition-transform group-hover:translate-x-1">
-                  <polyline points="9 18 15 12 9 6" />
-                </StaticIcon>
-              </a>
+              <NavLink to='services'>
+                {viewSpecsBtnBtn}
+              </NavLink>
             </div>
           </div>
 
@@ -94,14 +115,9 @@ export default function CoreServices() {
             </div>
 
             <div className="pt-6 border-t border-surface-border">
-              <a href="/services/security" className="flex items-center justify-between group">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted group-hover:text-primary group-hover:scale-110 origin-left transition-all duration-300">
-                  View Specifications
-                </span>
-                <StaticIcon className="w-3 h-3 text-text-muted group-hover:text-primary transition-transform group-hover:translate-x-1">
-                  <polyline points="9 18 15 12 9 6" />
-                </StaticIcon>
-              </a>
+              <NavLink to='services'>
+                {viewSpecsBtnBtn}
+              </NavLink>
             </div>
           </div>
 
@@ -128,31 +144,19 @@ export default function CoreServices() {
             </div>
 
             <div className="pt-6 border-t border-surface-border">
-              <a href="/services/compliance" className="flex items-center justify-between group">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted group-hover:text-primary group-hover:scale-110 origin-left transition-all duration-300">
-                  View Specifications
-                </span>
-                <StaticIcon className="w-3 h-3 text-text-muted group-hover:text-primary transition-transform group-hover:translate-x-1">
-                  <polyline points="9 18 15 12 9 6" />
-                </StaticIcon>
-              </a>
+              <NavLink to='services'>
+                {viewSpecsBtnBtn}
+              </NavLink>
             </div>
-          </div>
 
+          </div>
         </div>
-        <button className="group hidden mt-3 md:flex items-center gap-3 px-6 py-3 rounded-full border border-surface-border bg-surface-card hover:bg-primary hover:border-primary hover:-translate-y-0.5 transition-all duration-300 shadow-sm active:scale-95">
-          <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-text-main group-hover:text-white transition-colors">
-            Explore All Services
-          </span>
 
-          <div className="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
-            <StaticIcon className="w-3.5 h-3.5 text-primary group-hover:text-white transition-colors">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </StaticIcon>
-          </div>
-        </button>
+        <NavLink to='services'>
+          {exploreAllServicesBtn}
+        </NavLink> 
+
       </div>
     </section>
-  );
+  );  
 }
