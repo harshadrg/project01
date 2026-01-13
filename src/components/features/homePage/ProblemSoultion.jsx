@@ -1,5 +1,6 @@
 import React from 'react';
 import { StaticIcon } from "../../common/Icon";
+import { NavLink } from 'react-router-dom';
 
 export default function ProblemSolution() {
     return (
@@ -138,9 +139,11 @@ export default function ProblemSolution() {
                                 </div>
                             </div>
 
-                            <button className="w-full py-5 rounded-(--radius-control) bg-primary text-white text-xs font-black uppercase tracking-[0.3em] hover:bg-primary-hover transition-all shadow-md active:scale-[0.99]">
-                                Secure Your Infrastructure
-                            </button>
+                            <NavLink to='contact'>
+                                <button className="w-full py-5 rounded-(--radius-control) bg-primary text-white text-xs font-black uppercase tracking-[0.3em] hover:bg-primary-hover transition-all shadow-md active:scale-[0.99]">
+                                    Secure Your Infrastructure
+                                </button>
+                            </NavLink>
                         </div>
                     </div>
 
