@@ -1,0 +1,59 @@
+# Simple workflow for deploying Vite React to GitHub Pages
+name: Deploy Vite React to GitHub Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"] # Run on push to main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read  # Read repository contents
+  pages: write    # Allow Pages deployment
+  id-token: write # Required for environment deployments
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false # Let current deployments finish
+
+jobs:
+  # Single deploy job since we're just deploying
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages # Environment to deploy to
+      url: ${{ steps.deployment.outputs.page_url }} # Auto-updated Pages URL
+    steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Set up Node.js environment for building React/Vite
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=24' # Ensure Node 24+ for compatibility
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Build the Vite + React project
+      - name: Build Vite project
+        run: npm run build # Generates production build in 'dist/'
+
+      # Upload the production build folder as a Pages artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist   # # Only deploy the 'dist/' folder
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
